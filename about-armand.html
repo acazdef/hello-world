@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Armand</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .profile-section {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1.2s ease-out;
+        }
+        
+        .photo-container {
+            flex-shrink: 0;
+            width: 250px;
+            height: 300px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .photo-placeholder .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .info-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInRight 1.4s ease-out;
+        }
+        
+        .info-card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            color: #ecf0f1;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card p {
+            margin: 0;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .skills-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background: rgba(52, 152, 219, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(52, 152, 219, 0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-btn.current {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .btn-icon {
+            font-size: 1.2em;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+        
+        .btn-text {
+            font-size: 0.9em;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .photo-container {
+                width: 200px;
+                height: 250px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Armand Cazalis de Fondouce</h1>
+        </div>
+        
+        <div class="profile-section">
+            <div class="photo-container">
+                <img src="profile pic.jpeg" alt="Armand Cazalis de Fondouce" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+            </div>
+            
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>👤 About Me</h3>
+                    <p>Hello! I'm Armand Cazalis de Fondouce, a passionate professional with expertise in business development, strategic planning, and international relations. I thrive on building meaningful connections and driving innovative solutions across diverse industries.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🎯 Professional Background</h3>
+                    <p>With a strong foundation in business and international affairs, I have experience in consulting, project management, and strategic partnerships. I specialize in bridging cultural gaps and fostering collaborative relationships between organizations and stakeholders across different markets and industries.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>💼 Skills & Expertise</h3>
+                    <div class="skills-section">
+                        <span class="skill-tag">Business Development</span>
+                        <span class="skill-tag">Strategic Planning</span>
+                        <span class="skill-tag">International Relations</span>
+                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Consulting</span>
+                        <span class="skill-tag">Cross-cultural Communication</span>
+                        <span class="skill-tag">Partnership Development</span>
+                        <span class="skill-tag">Market Analysis</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3>📧 Contact Information</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <span>Email: armand.cazalis@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📱</span>
+                            <span>Phone: +33 (0)1 XX XX XX XX</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>🌐</span>
+                            <span>LinkedIn: linkedin.com/in/armand-cazalis</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span>Location: Paris, France</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">
+            <span class="btn-icon">🏠</span>
+            <span class="btn-text">Home</span>
+        </a>
+        <a href="hello-world-2.html" class="nav-btn">
+            <span class="btn-icon">🎭</span>
+            <span class="btn-text">Party Mode</span>
+        </a>
+        <a href="about-armand.html" class="nav-btn current">
+            <span class="btn-icon">👤</span>
+            <span class="btn-text">About Me</span>
+        </a>
+    </div>
+</body>
+</html> 
